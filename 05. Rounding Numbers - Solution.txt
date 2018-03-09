@@ -1,0 +1,23 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.math.BigDecimal;
+import java.util.Arrays;
+
+
+public class Main {
+    public static void main(String[] args) throws IOException {
+        BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
+        String input = bf.readLine();
+
+        double[] numbersAsText = Arrays.stream(input.split(" "))
+                .mapToDouble(Double::parseDouble)
+                .toArray();
+
+        for (int a = 0; a < numbersAsText.length; a++) {
+
+            System.out.printf("%s => %.0f%n",numbersAsText[a],numbersAsText[a]);
+        }
+
+    }
+}

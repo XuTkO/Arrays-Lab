@@ -1,0 +1,43 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.Arrays;
+
+
+public class Main {
+    public static void main(String[] args) throws IOException {
+        BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
+
+        int[] firstInput = Arrays.stream(bf.readLine().split(" "))
+                .mapToInt(Integer::parseInt)
+                .toArray();
+
+        int[] secondInput = Arrays.stream(bf.readLine().split(" "))
+                .mapToInt(Integer::parseInt)
+                .toArray();
+
+        int minLenght = Math.min(firstInput.length, secondInput.length);
+        int maxLenght = Math.max(firstInput.length, secondInput.length);
+
+        int[] thirdArray = new int[maxLenght];
+
+        if (secondInput.length==firstInput.length){
+            thirdArray=secondInput;
+        } else if (firstInput.length == minLenght) {
+            for (int a = 0; a < thirdArray.length; a++) {
+                thirdArray[a] = firstInput[a%firstInput.length];
+            }
+            for (int b = 0; b < maxLenght; b++){
+                System.out.print(secondInput[b] + thirdArray[b] + " ");
+            }
+            return;
+        } else if(secondInput.length==minLenght){
+            for (int a = 0; a < maxLenght; a++) {
+                thirdArray[a] = secondInput[a%secondInput.length];
+            } 
+        }
+        for (int a = 0; a < maxLenght; a++){
+            System.out.print(firstInput[a] + thirdArray[a] + " ");
+        }
+    }
+}
