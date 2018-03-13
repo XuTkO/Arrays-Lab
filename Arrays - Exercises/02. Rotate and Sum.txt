@@ -1,0 +1,39 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.Arrays;
+
+
+public class Main {
+    public static void main(String[] args) throws IOException {
+        BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
+
+        int[] input = Arrays.stream(bf.readLine().split("\\s"))
+                .mapToInt(Integer::parseInt)
+                .toArray();
+
+        int loops = Integer.parseInt(bf.readLine());
+
+        int[] sumArray = new int[input.length];
+
+        for (int a = 0; a < loops; a++){
+            int firstNumber = input[input.length-1];
+            int[] secondArray = new int[input.length];
+            secondArray[0] = firstNumber;
+            for (int b = 1; b < input.length; b++) {
+                secondArray[secondArray.length-b]=input[input.length-b-1];
+            }
+
+            for (int c = 0; c < sumArray.length; c++){
+                sumArray[c] += secondArray[c];
+            }
+
+            input = secondArray;
+        }
+
+        for (int num:sumArray
+             ) {
+            System.out.print(num + " ");
+        }
+    }
+}

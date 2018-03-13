@@ -1,0 +1,44 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.Arrays;
+
+
+public class Main {
+    public static void main(String[] args) throws IOException {
+        BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
+
+        int[] input = Arrays.stream(bf.readLine().split("\\s"))
+                .mapToInt(Integer::parseInt)
+                .toArray();
+
+        int divide = input.length/4;
+
+        int[] upperArray = new int[input.length/2];
+        int[] lowerArray = new int[input.length/2];
+
+        int[] sumArray = new int[input.length/2];
+
+        for (int a = 0; a <divide ; a++){
+            upperArray[divide-1-a] = input[input.length-(4*divide)+a];
+        }
+
+        for (int a = 0; a < divide*2; a++){
+            lowerArray[a] = input[divide+a];
+        }
+
+        for (int a = 0; a < divide; a++){
+            upperArray[a+divide] = input[input.length-a-1];
+        }
+
+        for (int a = 0; a < sumArray.length; a++){
+            sumArray[a] = lowerArray[a] + upperArray[a];
+        }
+
+        for (int num:sumArray
+             ) {
+            System.out.print(num + " ");
+        }
+
+    }
+}

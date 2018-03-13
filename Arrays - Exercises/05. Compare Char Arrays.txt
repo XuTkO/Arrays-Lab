@@ -1,0 +1,64 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.Arrays;
+
+
+public class Main {
+    public static void main(String[] args) throws IOException {
+        BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
+
+        char[] firstInput = bf.readLine().replaceAll(" ","").toCharArray();
+        char[] secondInput = bf.readLine().replaceAll(" ","").toCharArray();
+
+        String result = "";
+        String result2 = "";
+
+        int min = Math.min(firstInput.length,secondInput.length);
+
+        if(firstInput.length == secondInput.length){
+            for (int a = 0; a < firstInput.length; a++){
+                if(firstInput[a] < secondInput[a]){
+                    result = String.valueOf(firstInput);
+                    result2 = String.valueOf(secondInput);
+                    break;
+                } else if (secondInput[a] < firstInput[a]){
+                    result = String.valueOf(secondInput);
+                    result2 = String.valueOf(firstInput);
+                    break;
+                }
+                if ( a == firstInput.length-1) {
+                    result = String.valueOf(firstInput);
+                    result2 = String.valueOf(secondInput);
+                }
+
+            }
+        } else if (firstInput!=secondInput){
+            for (int a = 0; a < min; a++){
+                if(firstInput[a] < secondInput[a]){
+                    result = String.valueOf(firstInput);
+                    result2 = String.valueOf(secondInput);
+                    break;
+                } else if (secondInput[a] < firstInput[a]){
+                    result = String.valueOf(secondInput);
+                    result2 = String.valueOf(firstInput);
+                    break;
+                }
+                if ( a == min-1) {
+                    if (firstInput.length == min) {
+                        result = String.valueOf(firstInput);
+                        result2 = String.valueOf(secondInput);
+                    } else {
+                        result = String.valueOf(secondInput);
+                        result2 = String.valueOf(firstInput);
+                    }
+                }
+
+            }
+        }
+
+
+        System.out.println(result);
+        System.out.println(result2);
+    }
+}

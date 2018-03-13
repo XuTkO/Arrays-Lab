@@ -1,0 +1,37 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.Arrays;
+
+
+public class Main {
+    public static void main(String[] args) throws IOException {
+        BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
+
+        int[] input = Arrays.stream(bf.readLine().split("\\s"))
+                .mapToInt(Integer::parseInt)
+                .toArray();
+
+        int number = 0;
+        int counter = 0;
+        int controlCounter =0;
+
+
+        for (int i = 0; i < input.length; i++){
+            for (int a = 0; a < input.length; a++){
+                if(input[i]==input[a]){
+                    counter++;
+                }
+            }
+
+            if(counter > controlCounter){
+                controlCounter=counter;
+                number=input[i];
+            }
+            counter=0;
+        }
+
+        System.out.println(number);
+        
+    }
+}

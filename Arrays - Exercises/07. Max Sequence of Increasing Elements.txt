@@ -1,0 +1,54 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.Arrays;
+
+
+public class Main {
+    public static void main(String[] args) throws IOException {
+        BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
+
+        int[] input = Arrays.stream(bf.readLine().split("\\s"))
+                .mapToInt(Integer::parseInt)
+                .toArray();
+
+        int number = 0;
+        int counter = 0;
+        int controlCounter = 1;
+
+        for (int a = 0; a < input.length - 1; a++) {
+            if (input[a] < input[a + 1]) {
+                controlCounter++;
+            } else {
+                if(controlCounter > counter){
+                    counter=controlCounter;
+                    number=a+1;
+
+                }
+                controlCounter=1;
+            }
+
+            if(a==input.length-2){
+                if(controlCounter > counter){
+                    counter=controlCounter;
+                    number=a+2;
+
+                }
+            }
+        }
+
+        int[] maxSeq = new int[counter];
+
+        for (int i = 0; i < maxSeq.length ; i++){
+            maxSeq[i] = input[number-counter+i];
+
+        }
+
+        for (int num:maxSeq
+             ) {
+            System.out.print(num+ " ");
+        }
+
+
+    }
+}

@@ -1,0 +1,35 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.Arrays;
+
+
+public class Main {
+    public static void main(String[] args) throws IOException {
+        BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
+
+        String[] firstInput = bf.readLine().split("\\s");
+        String[] secondInput = bf.readLine().split("\\s");
+
+        int minLenght = Math.min(firstInput.length,secondInput.length);
+
+        int sumLeft = 0;
+        int sumRight = 0;
+
+        for (int a = 0; a < minLenght; a++){
+            if(firstInput[a].equals(secondInput[a])){
+                sumLeft++;
+            }
+
+        }
+
+        for (int a = 0; a < minLenght; a++){
+            if (firstInput[firstInput.length-a-1].equals(secondInput[secondInput.length-a-1])){
+                sumRight++;
+            }
+
+        }
+
+        System.out.println(Math.max(sumLeft,sumRight));
+    }
+}
