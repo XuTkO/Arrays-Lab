@@ -1,0 +1,44 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.Arrays;
+
+
+public class Main {
+    public static void main(String[] args) throws IOException {
+        BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
+
+        int[] elements = Arrays.stream(bf.readLine().split("\\s"))
+                .mapToInt(Integer::parseInt)
+                .toArray();
+
+        int priceJewels = elements[0];
+        int priceGold = elements[1];
+
+        int loot = 0;
+        int expenses = 0;
+
+
+        String commands;
+
+        while ((commands = bf.readLine()).equals("Jail Time")==false){
+            String[] comands = commands.split("\\s");
+            char[] test = comands[0].toCharArray();
+            expenses+=Integer.parseInt(comands[1]);
+            for (int a = 0; a < test.length; a++){
+                if(test[a]=='%'){
+                    loot+=priceJewels;
+                } else if (test[a]=='$'){
+                    loot+=priceGold;
+                }
+            }
+        }
+
+        if(loot >= expenses){
+            System.out.printf("Heists will continue. Total earnings: %d.",loot-expenses);
+        } else {
+            System.out.printf("Have to find another job. Lost: %d.",expenses-loot);
+        }
+    }
+}
+

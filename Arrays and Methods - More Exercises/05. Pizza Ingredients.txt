@@ -1,0 +1,37 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.Arrays;
+
+
+public class Main {
+    public static void main(String[] args) throws IOException {
+        BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
+
+        String[] ingredients = bf.readLine().split(" ");
+
+        int lengthIngredients = Integer.parseInt(bf.readLine());
+
+        String ingredientsFinal = "";
+
+        int numIngredients = 0;
+
+        for (int a = 0; a < ingredients.length; a++){
+            char[] test = ingredients[a].toCharArray();
+            if(test.length == lengthIngredients){
+                System.out.printf("Adding %s.%n",ingredients[a]);
+                ingredientsFinal+= ingredients[a] + ", ";
+                numIngredients++;
+            }
+
+            if (numIngredients == 10){
+                break;
+            }
+
+        }
+
+        System.out.printf("Made pizza with total of %s ingredients.%n",numIngredients);
+        System.out.printf("The ingredients are: %s.",ingredientsFinal.substring(0,ingredientsFinal.length()-2));
+    }
+}
+

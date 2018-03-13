@@ -1,0 +1,48 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.Arrays;
+
+
+public class Main {
+    public static void main(String[] args) throws IOException {
+        BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
+
+        String[] products = bf.readLine().split("\\s");
+
+        long[] quantities = Arrays.stream(bf.readLine().split("\\s"))
+                .mapToLong(Long::parseLong)
+                .toArray();
+
+        double[] prices = Arrays.stream(bf.readLine().split("\\s"))
+                .mapToDouble(Double::parseDouble)
+                .toArray();
+
+        long[] quantitiesFinal = new long[products.length];
+
+        for (int a = 0; a < quantities.length; a++) {
+            quantitiesFinal[a] = quantities[a];
+        }
+
+        while (true) {
+            String[] command = bf.readLine().split("\\s");
+            if (command[0].equals("done")) {
+                break;
+            }
+
+
+            for (int a = 0; a < products.length; a++) {
+                if (command[0].equals(products[a])) {
+                    if (quantitiesFinal[a] >= Integer.valueOf(command[1])) {
+                        System.out.printf("%s x %s costs %.2f%n", command[0], command[1], (double) (Double.parseDouble(command[1])) * prices[a]);
+                        quantitiesFinal[a]-=Integer.valueOf(command[1]);
+                        break;
+                    } else {
+                        System.out.printf("We do not have enough %s",command[0]);
+                    }
+                }
+            }
+        }
+    }
+}
+

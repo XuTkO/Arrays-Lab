@@ -1,0 +1,49 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.Arrays;
+import java.util.stream.IntStream;
+
+
+public class Main {
+    public static void main(String[] args) throws IOException {
+        BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
+
+        String[] input = bf.readLine().split(" ");
+
+
+
+        String[] text= bf.readLine().split("\\s");
+
+        while (!text[0].equals("END")) {
+            if (text[0].equals("Distinct")) {
+                input = Arrays.stream(input).distinct().toArray(String[]::new);
+            } else if (text[0].equals("Reverse")) {
+                input = getReversedArray(input);
+            } else if (text[0].equals("Replace")) {
+                if(Integer.parseInt(text[1]) < 0 || Integer.parseInt(text[1]) > input.length-1){
+                    System.out.println("Invalid input!");
+                } else {
+                    input[Integer.parseInt(text[1])] = text[2];
+                }
+            } else {
+                System.out.println("Invalid input!");
+            }
+            text= bf.readLine().split("\\s");
+        }
+        System.out.println(String.join(", ",input));
+    }
+
+
+
+    static String[] getReversedArray(String[] input) {
+        String[] inputGet = new String [input.length];
+        for (int a = input.length-1; a >=0 ; a--){
+            inputGet[input.length-a-1] = input[a];
+        }
+        input=inputGet;
+         return input;
+
+    }
+}
+

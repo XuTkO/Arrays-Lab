@@ -1,0 +1,32 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.text.DecimalFormat;
+import java.util.Arrays;
+
+
+public class Main {
+    public static void main(String[] args) throws IOException {
+        BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
+        DecimalFormat df = new DecimalFormat("#.##########");
+
+        String[] products = bf.readLine().split("\\s");
+
+        String[] quantities = bf.readLine().split("\\s");
+
+        String[] prices = bf.readLine().split("\\s");
+
+        String command = bf.readLine();
+
+        while (!command.equals("done")){
+            for (int a = 0; a < products.length; a++){
+                if(command.equals(products[a])){
+                    System.out.printf("%s costs: %s; Available quantity: %s%n",products[a],prices[a],quantities[a]);
+                }
+
+            }
+            command = bf.readLine();
+        }
+    }
+}
+
