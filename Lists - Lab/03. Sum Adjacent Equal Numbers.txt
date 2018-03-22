@@ -1,0 +1,35 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.text.DecimalFormat;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
+
+public class Main {
+    public static void main(String[] args) throws IOException {
+        BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
+        DecimalFormat df = new DecimalFormat("#.######");
+
+        List<Double> input = Arrays.stream(bf.readLine().split("\\s"))
+                .map(Double::parseDouble)
+                .collect(Collectors.toList());
+
+
+
+        for (int i = 0; i < input.size()-1; i++){
+            double firstNumber=input.get(i);
+            double secondNumber=input.get(i+1);
+            if (firstNumber == secondNumber){
+                input.set(i+1,firstNumber+secondNumber);
+                input.remove(i);
+                i=-1;
+            }
+        }
+        for (double num:input
+             ) {
+            System.out.print(df.format(num)+" ");
+        }
+    }
+}

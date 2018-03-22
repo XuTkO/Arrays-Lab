@@ -1,0 +1,56 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
+
+public class Main {
+    public static void main(String[] args) throws IOException {
+        BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
+        DecimalFormat df = new DecimalFormat("#.######");
+
+        List<String> input = Arrays.asList(bf.readLine().split("[,?\\s?;?:?\\.?!?\\(?\\)?\"?'?\\\\?\\/?\\[?\\]?]+"));
+
+        List<String> lower = new ArrayList<>();
+        List<String> mixed = new ArrayList<>();
+        List<String> upper = new ArrayList<>();
+        int lowerCounter = 0;
+        int upperCounter = 0;
+        for (int i = 0; i < input.size(); i++) {
+            char[] test = input.get(i).toCharArray();
+            for (int a = 0; a < test.length; a++) {
+                if (test[a] >= 97 && test[a] <= 122) {
+                    lowerCounter++;
+                } else if (test[a] <=90 && test[a] >= 65) {
+                    upperCounter++;
+                } else {
+                    lowerCounter++;
+                    upperCounter++;
+                }
+            }
+            if(lowerCounter > 0 && upperCounter > 0) {
+                mixed.add(input.get(i));
+            } else if(lowerCounter > 0 && upperCounter==0) {
+                lower.add(input.get(i));
+            } else if (upperCounter>0 && lowerCounter==0){
+                upper.add(input.get(i));
+            }
+            lowerCounter=0;
+            upperCounter=0;
+        }
+
+        System.out.println("Lower-case: " + String.join(", ",lower));
+
+
+        System.out.println("Mixed-case: " + String.join(", ",mixed));
+
+
+        System.out.println("Upper-case: "  + String.join(", ",upper));
+
+
+    }
+}
