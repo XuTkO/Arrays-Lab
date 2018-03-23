@@ -1,0 +1,47 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Scanner;
+import java.util.stream.Collectors;
+
+public class Demo {
+    public static void main(String[] args) throws IOException {
+
+        BufferedReader bfReader = new BufferedReader(new InputStreamReader(System.in));
+        BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
+
+        List<Integer> input = Arrays.stream(bf.readLine().split("\\s+"))
+                .map(Integer::parseInt)
+                .collect(Collectors.toList());
+
+        int[] numbers = Arrays.stream(bf.readLine().split("\\s+"))
+                .mapToInt(Integer::parseInt)
+                .toArray();
+
+        int numberToTake = numbers[0];
+        int numberToDelete = numbers[1];
+        int searchNumber = numbers[2];
+
+        List<Integer> newList = new ArrayList<>();
+
+        for (int i = 0; i < numberToTake; i++){
+            newList.add(input.get(i));
+        }
+
+
+        newList = newList.subList(numberToDelete,newList.size());
+
+        for (int i = 0; i < newList.size(); i++){
+            if (newList.get(i) == searchNumber){
+                System.out.println("YES!");
+                return;
+            }
+
+        }
+        System.out.println("NO!");
+    }
+}

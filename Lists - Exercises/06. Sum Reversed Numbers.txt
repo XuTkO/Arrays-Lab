@@ -1,0 +1,31 @@
+        import java.io.BufferedReader;
+        import java.io.IOException;
+        import java.io.InputStreamReader;
+        import java.util.ArrayList;
+        import java.util.Arrays;
+        import java.util.Collections;
+        import java.util.List;
+        import java.util.stream.Collectors;
+
+public class Demo {
+    public static void main(String[] args) throws IOException {
+        BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
+
+        List<Integer> input = Arrays.stream(bf.readLine().split("\\s+"))
+                .map(Integer::parseInt)
+                .collect(Collectors.toList());
+
+        long sum = 0;
+        String number = "";
+        for (int i = 0; i < input.size(); i++){
+            char[] newArray = String.valueOf(input.get(i)).toCharArray();
+            for (int a = newArray.length-1; a >=0 ; a--){
+                number+=newArray[a];
+            }
+            sum+=Integer.parseInt(number);
+            number="";
+        }
+        System.out.println(sum);
+
+    }
+}

@@ -1,0 +1,43 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.Arrays;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.stream.Collectors;
+
+
+public class Main {
+    public static void main(String[] args) throws IOException {
+        BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
+
+        List<Integer> input = Arrays.stream(bf.readLine().split("\\s+"))
+                .map(Integer::parseInt)
+                .collect(Collectors.toList());
+        int counter = 1;
+        int countrolCounter = 0;
+        int number = 0;
+
+        for (int i = 0; i < input.size()-1; i++){
+            if (input.get(i)==input.get(i+1)){
+                counter++;
+                if(i==input.size()-2 && (input.get(i)==input.get(i+1)) && counter > countrolCounter){
+                    number=input.get(i);
+                    countrolCounter=counter;
+                }
+            } else if (input.get(i)!=input.get(i+1)) {
+                if (counter > countrolCounter) {
+                    countrolCounter=counter;
+                    number = input.get(i);
+                    counter = 1;
+                } else {
+                    counter=1;
+                }
+            }
+        }
+        for (int i = 0; i < countrolCounter; i++){
+            System.out.print(number + " ");
+
+        }
+    }
+}
