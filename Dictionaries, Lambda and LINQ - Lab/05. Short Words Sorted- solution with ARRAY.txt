@@ -1,0 +1,27 @@
+package com.company;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.*;
+import java.util.stream.Collectors;
+
+
+public class Main {
+
+    public static void main(String[] args) throws IOException {
+
+        BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
+
+
+        String[] input =Arrays.stream(bf.readLine().split("[\\\\,:;.!()\"'/\\[\\]\\s+]+"))
+                .map(String::toLowerCase)
+                .distinct()
+                .sorted()
+                .filter(w->w.length()<5)
+                .toArray(String[]::new);
+        System.out.println(String.join(", ",input));
+
+
+    }
+}

@@ -1,0 +1,31 @@
+package com.company;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.*;
+
+
+public class Main {
+
+    public static void main(String[] args) throws IOException {
+
+        BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
+
+
+        int[] nums = Arrays.stream(bf.readLine().split("\\s+"))
+                .mapToInt(Integer::parseInt)
+                .sorted()
+                .toArray();
+
+        if (nums.length >= 3) {
+            for (int a = nums.length - 1; a > nums.length - 4; a--) {
+                System.out.print(nums[a] + " ");
+            }
+        } else {
+            for (int a = nums.length - 1; a >= 0; a--) {
+                System.out.print(nums[a] + " ");
+            } 
+        }
+    }
+}
