@@ -1,0 +1,44 @@
+import java.util.*;
+
+public class Main {
+
+    public static void main(String[] args) {
+
+        Scanner scanner = new Scanner(System.in);
+
+        int[] input = Arrays.stream(scanner.nextLine().split(" "))
+                .mapToInt(Integer::parseInt)
+                .toArray();
+
+        int count = 1;
+        int currentCount = 1;
+        int number = 0;
+
+        for (int a = 0; a < input.length - 1; a++) {
+            if (input[a] == input[a + 1]) {
+                count++;
+            } else if (input[a] != input[a + 1]) {
+                if (count > currentCount) {
+                    currentCount = count;
+                    number = input[a];
+                }
+                count = 1;
+            }
+
+            if (a == input.length - 2 && number == 0 && count > 1) {
+                number = input[a];
+                currentCount = count;
+            }
+
+            if (a == input.length - 2 && number == 0 && count == 1) {
+                number = input[0];
+                currentCount = count;
+            }
+
+        }
+        for (int a = 0; a < currentCount; a++) {
+            System.out.print(number + " ");
+
+        }
+    }
+}
